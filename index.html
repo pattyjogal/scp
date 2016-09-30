@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Policy Council</title>
+    <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="src/material.css">
+    <link rel="stylesheet" href="src/project.css">
+    <script defer src="src/material.js"></script>
+</head>
+<body>
+<!-- Uses a transparent header that draws on top of the layout's background -->
+<style scoped>
+    .demo-layout-transparent {
+        background: url('img/chicaog_skyline.jpg') center / cover;
+    }
+    .demo-layout-transparent .mdl-layout__header,
+    .demo-layout-transparent .mdl-layout__drawer-button {
+        /* This background is dark, so we set text to white. Use 87% black instead if
+           your background is light. */
+        color: white;
+    }
+    .mdl-layout-title{
+        font-size: xx-large;
+    }
+    footer{
+        position:fixed;
+        left:0px;
+        bottom:0px;
+        width:100%;
+        display: block;
+
+    }
+
+</style>
+
+<div class="demo-layout-transparent mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Student Policy Council</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <nav class="mdl-navigation">
+            <a id="home" class="mdl-navigation__link link_hover" onclick="changeTo('home')">Home</a>
+            <a id="about" class="mdl-navigation__link"  onclick="changeTo('about')">About</a>
+            <a id="pub" class="mdl-navigation__link" onclick="changeTo('pub')">Publications</a>
+            <a id="contact" class="mdl-navigation__link" onclick="changeTo('contact')">Contact</a>
+        </nav>
+    </div>
+    <main id="content" class="mdl-layout__content">
+    </main>
+    <footer id="footer" class="mdl-mega-footer" style="z-index: 10">
+        <div class="mdl-mega-footer__middle-section">
+            Imagery provided by <a href="https://flic.kr/p/KnGv4x">Roman Boed</a>
+            under the <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a> licence
+            <p>Made with <span style="color: red;">❤</span> by Patrick Gallagher</p>
+        </div>
+    </footer>
+</div>
+<script>
+    $('#content').load('home.html');
+    var canHide = false;
+    $(function () {
+        setTimeout(function () {
+            $('#footer').slideUp(1000);
+
+        }, 1000);
+        setTimeout(function () {
+            canHide = true;
+        }, 500);
+    });
+    var tabs = [
+            'home',
+            'about',
+            'pub',
+            'contact'
+    ];
+    function changeTo(target) {
+        tabs.forEach(function (elem) {
+            if (elem == target){
+                $("#" + elem).addClass('link_hover')
+            }else {
+                $("#" + elem).removeClass('link_hover')
+            }
+        });
+        $('#content').load(target + '.html');
+    }
+    $(document).mousemove(function (e) {
+        if (canHide) {
+            if ($(window).height() - e.clientY < 100) {
+                $('#footer').slideDown(500);
+            } else {
+                $('#footer').slideUp(500);
+            }
+        }
+    })
+
+</script>
+</body>
+
+</html>
