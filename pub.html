@@ -1,0 +1,31 @@
+<style scoped>
+    hr {
+       margin-top: 0;
+       margin-bottom: 0;
+    }
+</style>
+<div class="mdl-grid">
+    <div class="container content mdl-color--white mdl-cell mdl-cell--8-col">
+        <h2>Publications</h2>
+        <div id="pub_list" class="mdl-list center" style="max-width: 75%">
+        <hr>
+        </div>
+    </div>
+</div>
+<script>
+    // As of present, you just need to add each publication to this list and it will render
+    var publications = [
+        'Defining A 21st Century Education',
+        'test'
+    ];
+    publications.forEach(function (filename) {
+        elem = '<div class="mdl-list__item">' +
+                '   <span class="mdl-list__item-primary-content">' +
+                '       <i style="margin-right: 30px" class="material-icons">insert_drive_file</i>' +
+                '       <span>'+ filename + '</span>' +
+                '   </span>' +
+                '   <a class="mdl-list__item-secondary-action" href="publications/' + filename + '.pdf"><i class="material-icons">file_download</i></a>' +
+                '</div><hr>';
+        $('#pub_list').append(elem);
+    });
+</script>
